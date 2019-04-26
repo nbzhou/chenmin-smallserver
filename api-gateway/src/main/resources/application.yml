@@ -1,0 +1,47 @@
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+    register-with-eureka: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.cloud.netflix.zuul: DEBUG
+
+router:
+  tools:
+    admin: 192.168.19.22
+    jenkins: 192.168.19.20
+---
+spring:
+  profiles: test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+
+logging:
+  level:
+    root: info
+  file:
+    max-history: 7
+logging.file: ${spring.application.name}.log
+---
+spring:
+  profiles: prod
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.54.30:8761/eureka,http://172.18.54.29:8761/eureka
+
+logging:
+  level:
+    root: info
+  file:
+    max-history: 7
+logging.file: /home/apps/logs/${spring.application.name}.log
+
