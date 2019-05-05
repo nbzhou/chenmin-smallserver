@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghuilv.aitravel.basic.service.mapper.RoleMapper">
+
+
+    <insert id="insertScenics">
+        INSERT into sys_role_scenic(role_id, scenic_id)
+        VALUES
+        <foreach collection="scenics" item="item" separator=",">
+            (#{roleId},#{item})
+        </foreach>
+
+    </insert>
+    <select id="selectRoleAccess" resultType="com.zhonghuilv.aitravel.basic.intf.pojo.dto.RoleAccessDTO">
+        SELECT sr.role_code,sa.access_adress from sys_access_role sar
+        inner join sys_role sr on sr.id=sar.role_id
+        inner join sys_access sa on sa.id=sar.access_id
+        <if test="serviceId != null">
+            where sa.service = #{serviceId}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghuilv.aitravel.basic.service.mapper.SysAccessRoleMapper">
+    <select id="selectAccessByRoleId" resultType="com.zhonghuilv.aitravel.basic.intf.pojo.SysAccess">
+        SELECT
+        sa.id,
+        sa.access_adress,
+        sa.access_name,
+        sa.access_pid,
+        sar.role_id
+        FROM sys_access sa INNER JOIN sys_access_role sar ON sa.id = sar.access_id
+        WHERE sar.role_id = #{roleId}
+    </select>
+</mapper>

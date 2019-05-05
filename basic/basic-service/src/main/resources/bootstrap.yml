@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: basic-service
+  jackson:
+   date-format: yyyy-MM-dd HH:mm:ss
+   time-zone: GMT+8
+server:
+  port: 8001
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+  #register-with-eureka: false
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+mybatis:
+    type-aliases-package: com.zhonghuilv.aitravel.basic.intf.pojo
+    #驼峰
+    configuration:
+      map-underscore-to-camel-case: true
+    mapper-locations: classpath:mysql/*.xml
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+mapper:
+    mappers:
+        - com.zhonghuilv.aitravel.common.service.mapper.CommonMapper
+    not-empty: false
+    identity: MYSQL
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: flyway
+  endpoint:
+    health:
+      show-details: always
+wechat:
+  mini:
+    default-appid: wxee9467ee3d9a8466
+    apps:
+      wxee9467ee3d9a8466:
+        appid: wxee9467ee3d9a8466
+        secret: 944901511e477be94c5cc18306c31b8a
+      wx91e10e94eedbaa81:
+        appid: wx91e10e94eedbaa81
+        secret: 2458afef4baf061160e3777da88e0435
+  common:
+    appid: wx0a94f9a104d1d9ff
+    secret: 972a21674cc94f188b9e57565222faf5
+
+#监控平台

@@ -1,0 +1,128 @@
+---
+spring:
+  profiles : dev
+  rabbitmq:
+    host: 192.168.19.22
+    username: admin
+    password: 123456
+  cloud:
+    stream:
+      bindings:
+        info-coupon-input:
+          destination: info.coupon.information_code_dev
+          group: ${spring.application.name}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+    register-with-eureka: false
+      # 缓存注册列表
+    #fetch-registry: true
+logging:
+  level:
+    root: info
+    org.springframework.security: debug
+
+security:
+  oauth2:
+    client:
+      clientId: unity-client
+      clientSecret: unity
+  ignored: /**/noauth/**,/swagger**,/common**,/webjars/**,/common-resources/**,/v2/**,/favicon.ico,/swagger-resources/**
+
+swagger:
+  enable: true
+  o-auth2:
+    enable: true
+    app-key: basic-api
+    app-name: 基础api
+    authorization-url: http://192.168.19.22:8830/se/oauth/authorize
+#    authorization-url:
+  apis:
+    user:
+      packageName: com.zhonghuilv.aitravel.basic.ui.controller
+      author:
+        name: zhengjing
+
+---
+spring:
+  profiles : test
+  rabbitmq:
+    host: 192.168.19.22
+    username: admin
+    password: 123456
+  cloud:
+    stream:
+      bindings:
+        info-coupon-input:
+          destination: info.coupon.information_code_test
+          group: ${spring.application.name}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+      # 缓存注册列表
+    #fetch-registry: true
+logging:
+  level:
+    root: info
+  path: ${spring.application.name}.log
+  file:
+    max-history: 7
+
+
+
+swagger:
+  enable: true
+  o-auth2:
+    enable: true
+    app-key: basic-api
+    app-name: 基础api
+    authorization-url: http://192.168.19.22:8840/se/oauth/authorize
+#    authorization-url:
+  apis:
+    user:
+      packageName: com.zhonghuilv.aitravel.basic.ui.controller
+      author:
+        name: zhengjing
+security:
+  oauth2:
+    client:
+      clientId: unity-client
+      clientSecret: unity
+  ignored: /**/noauth/**,/swagger**,/common**,/webjars/**,/common-resources/**,/v2/**,/favicon.ico,/swagger-resources/**
+---
+spring:
+  profiles : prod
+  rabbitmq:
+    host: 172.18.54.30
+    username: admin
+    password: 123456
+  cloud:
+    stream:
+      bindings:
+        info-coupon-input:
+          destination: info.coupon.information_code_prod
+          group: ${spring.application.name}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.54.30:8761/eureka,http://172.18.54.29:8761/eureka
+      # 缓存注册列表
+    #fetch-registry: true
+logging:
+  level:
+    root: info
+  file:
+    max-history: 7
+logging.file: /home/apps/logs/${spring.application.name}.log
+
+swagger:
+  enable: false
+
+security:
+  oauth2:
+    client:
+      clientId: unity-client
+      clientSecret: unity
+  ignored: /**/noauth/**,/swagger**,/common**,/webjars/**,/common-resources/**,/v2/**,/favicon.ico,/swagger-resources/**

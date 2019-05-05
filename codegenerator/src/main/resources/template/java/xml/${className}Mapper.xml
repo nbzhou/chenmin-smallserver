@@ -1,0 +1,23 @@
+<#assign className = table.className>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${basepackage}.${subpackage}.service.mapper.${className}Mapper">
+  <resultMap id="baseResultMap" type="${basepackage}.${subpackage}.intf.pojo.${className}">
+      <#list table.columns as column>
+       <result column="${column.sqlName}" jdbcType="${column.jdbcTypeName}" property="${column.columnNameLower}"/>
+     </#list>
+  </resultMap>
+    <sql id="selectAll">
+        <#list table.columns as column>
+            ${column.sqlName},
+        </#list>
+    </sql>
+
+    <sql id="parmAll">
+        <#list table.columns as column>
+        <if test="${column.columnNameLower} != null">
+            AND ${column.sqlName} = ${column.columnNameLower}
+        </if>
+        </#list>
+    </sqlid>
+</mapper>

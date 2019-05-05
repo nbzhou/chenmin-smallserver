@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: basic-api
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+
+
+server:
+  port: 8002
+
+#这种方式处理超时异常并不合理
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+#    metadata-map:
+#      user.name: ${security.user.name}
+#      user.password: ${security.user.password}
+
+#处理第一次调用会超时 饥饿加载的方式
+ribbon:
+  eager-load:
+    enabled: true
+    clients: basic-service
+
+feign:
+  compression:
+    request:
+      mime-types: text/xml,application/xml,application/json
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+management.endpoints.web.exposure.include: '*'
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://security-service/se/user

@@ -1,0 +1,128 @@
+---
+spring:
+  profiles : dev
+  redis:
+        database: 3
+        host: 192.168.19.20
+        port: 6379
+        timeout: PT5S
+        jedis:
+          pool:
+            max-active: 10
+            max-idle: 10
+            min-idle: 0
+  jackson:
+    default-property-inclusion: non_null
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+    register-with-eureka: false
+
+
+aliyun:
+  sts:
+    access-key-id: LTAIecOl5RyswmBM
+    access-key-secret: b7nWbsrEeDx1zEkyeODrLJ6sY7XjDH
+    region: cn-hangzhou
+    version: 2015-04-01
+    role-arn: acs:ram::1873256221475942:role/aliyunosstokengeneratorrole
+    upload-bucket: ailx-static-dev
+    upload-endpoint: oss-cn-shenzhen.aliyuncs.com
+  sms:
+    access-key-id: LTAIKPSkrGvj5CUA
+    access-key-secret: mill2057G3FW6p9sgq1c1EODTpjTQU
+    region: cn-hangzhou
+    endpoint: cn-hangzhou
+
+logging:
+  level:
+   com.zhonghuilv: TRACE
+
+---
+spring:
+  profiles : test
+  redis:
+        database: 3
+        host: 192.168.19.20
+        port: 6379
+        timeout: PT5S
+        jedis:
+          pool:
+            max-active: 10
+            max-idle: 50
+            min-idle: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+
+aliyun:
+  sts:
+    access-key-id: LTAIecOl5RyswmBM
+    access-key-secret: b7nWbsrEeDx1zEkyeODrLJ6sY7XjDH
+    region: cn-hangzhou
+    version: 2015-04-01
+    role-arn: acs:ram::1873256221475942:role/aliyunosstokengeneratorrole
+    upload-bucket: ailx-static-dev
+    upload-endpoint: oss-cn-shenzhen.aliyuncs.com
+  sms:
+    access-key-id: LTAIKPSkrGvj5CUA
+    access-key-secret: mill2057G3FW6p9sgq1c1EODTpjTQU
+    region: cn-hangzhou
+    endpoint: cn-hangzhou
+logging:
+  level:
+    root: info
+    com.zhonghuilv: trace
+  path: ${spring.application.name}.log
+  file:
+    max-history: 7
+
+
+---
+spring:
+  profiles : prod
+  redis:
+    database: 8
+    host: r-wz91cb6a90f5eea4.redis.rds.aliyuncs.com
+    port: 6379
+    password: a9yaTih7
+    timeout: PT5S
+    jedis:
+      pool:
+        max-active: 30
+        max-idle: 50
+        min-idle: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.54.30:8761/eureka,http://172.18.54.29:8761/eureka
+
+aliyun:
+  sts:
+    access-key-id: LTAIecOl5RyswmBM
+    access-key-secret: b7nWbsrEeDx1zEkyeODrLJ6sY7XjDH
+    region: cn-hangzhou
+    version: 2015-04-01
+    role-arn: acs:ram::1873256221475942:role/aliyunosstokengeneratorrole
+    upload-bucket: ailx-static
+    upload-endpoint: oss-cn-shenzhen.aliyuncs.com
+  sms:
+    access-key-id: LTAIKPSkrGvj5CUA
+    access-key-secret: mill2057G3FW6p9sgq1c1EODTpjTQU
+    region: cn-hangzhou
+    endpoint: cn-hangzhou
+logging:
+  level:
+    root: info
+    com.zhonghuilv: TRACE
+  file:
+    max-history: 7
+logging.file: /home/apps/logs/${spring.application.name}.log

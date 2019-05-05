@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>chenmin-smallserver</artifactId>
+        <groupId>com.chemin.smallserver</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>Common</name>
+    <description>公共服务</description>
+    <artifactId>common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>common-base</module>
+        <module>common-swagger</module>
+        <module>common-api</module>
+        <module>common-ui</module>
+        <module>common-service</module>
+        <module>common-service-db</module>
+        <module>common-intf</module>
+        <module>common-util</module>
+        <module>common-api-only</module>
+    </modules>
+
+</project>

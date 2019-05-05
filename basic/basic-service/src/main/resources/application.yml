@@ -1,0 +1,101 @@
+---
+spring:
+  profiles : dev
+  datasource:
+    name: basic
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.19.10:3306/basic?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: aitravel
+    password: aitravel
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 3
+    maxActive: 50
+    initialSize: 10
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+  jackson:
+    default-property-inclusion: non_null
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+    register-with-eureka: false
+
+logging:
+  level:
+    tk.mybatis: TRACE
+    com.zhonghuilv: TRACE
+---
+spring:
+  profiles : test
+  datasource:
+    name: basic
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.19.10:3306/basic?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: aitravel
+    password: aitravel
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 3
+    maxActive: 50
+    initialSize: 10
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+
+logging:
+  level:
+    root: info
+    tk.mybatis: TRACE
+    com.zhonghuilv: TRACE
+  file:
+    max-history: 7
+logging.file: ${spring.application.name}/${spring.application.name}.log
+---
+spring:
+  profiles : prod
+  datasource:
+    name: basic
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://rm-wz97uanhrju61l349.mysql.rds.aliyuncs.com:3306/basic?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: travel
+    password: b2706a92
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 3
+    maxActive: 50
+    initialSize: 10
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.54.30:8761/eureka,http://172.18.54.29:8761/eureka
+
+logging:
+  level:
+    root: info
+  file:
+    max-history: 7
+logging.file: /home/apps/logs/${spring.application.name}.log

@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: constant-service
+  jackson:
+   date-format: yyyy-MM-dd HH:mm:ss
+   time-zone: GMT+8
+  cache:
+    couchbase:
+      expiration: PT1H
+
+server:
+  port: 8021
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+  #register-with-eureka: false
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+mybatis:
+    type-aliases-package: com.chemin.smallserver.travel.intf.pojo
+    #驼峰
+    configuration:
+      map-underscore-to-camel-case: true
+    mapper-locations: classpath:mysql/*.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+mapper:
+    mappers:
+        - com.chemin.smallserver.common.service.mapper.CommonMapper
+    not-empty: false
+    identity: MYSQL
+
+

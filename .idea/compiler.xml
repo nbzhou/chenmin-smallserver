@@ -7,13 +7,59 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
-        <module name="chenmin-smallserver" />
+        <module name="authorization-common" />
+        <module name="authorization-intf" />
+        <module name="authorization-service" />
+        <module name="basic-api" />
+        <module name="basic-intf" />
+        <module name="basic-service" />
+        <module name="basic-ui" />
         <module name="chenminsmallserver" />
+        <module name="code-generator" />
+        <module name="common-api" />
+        <module name="common-api-only" />
+        <module name="common-base" />
+        <module name="common-intf" />
+        <module name="common-service" />
+        <module name="common-service-db" />
+        <module name="common-swagger" />
+        <module name="common-ui" />
+        <module name="common-util" />
+        <module name="constant-intf" />
+        <module name="constant-service" />
+        <module name="register" />
+        <module name="starter-data-authority" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-gateway" target="1.8" />
+      <module name="authorization" target="1.8" />
+      <module name="authorization-common" target="1.8" />
+      <module name="authorization-intf" target="1.8" />
+      <module name="authorization-service" target="1.8" />
+      <module name="basic" target="1.8" />
+      <module name="basic-api" target="1.8" />
+      <module name="basic-intf" target="1.8" />
+      <module name="basic-service" target="1.8" />
+      <module name="basic-ui" target="1.8" />
       <module name="chenmin-smallserver" target="1.8" />
+      <module name="code-generator" target="1.5" />
+      <module name="common" target="1.8" />
+      <module name="common-api" target="1.8" />
+      <module name="common-api-only" target="1.8" />
+      <module name="common-base" target="1.8" />
+      <module name="common-intf" target="1.8" />
+      <module name="common-service" target="1.8" />
+      <module name="common-service-db" target="1.8" />
+      <module name="common-swagger" target="1.8" />
+      <module name="common-ui" target="1.8" />
+      <module name="common-util" target="1.5" />
+      <module name="constant" target="1.5" />
+      <module name="constant-intf" target="1.5" />
+      <module name="constant-service" target="1.5" />
+      <module name="register" target="1.5" />
+      <module name="starter" target="1.5" />
+      <module name="starter-data-authority" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
